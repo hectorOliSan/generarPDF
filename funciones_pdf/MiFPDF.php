@@ -8,6 +8,8 @@ class MiFPDF extends MiPDF
   private const G = 59;
   private const B = 75;
 
+  private $pdf;
+
   public function generaDoc()
   {
     $titulo = $this->getTitulo();
@@ -16,33 +18,30 @@ class MiFPDF extends MiPDF
     $tamano = $this->getTamano();
     $alineacion = $this->getAlineacion();
 
-    $pdf = new FPDF();
-    $pdf->AddPage();
-    $pdf->SetTextColor(MiFPDF::R, MiFPDF::G, MiFPDF::B);
+    $this->pdf = new FPDF();
+    $this->pdf->AddPage();
+    $this->pdf->SetTextColor(MiFPDF::R, MiFPDF::G, MiFPDF::B);
 
     // Título
-    $pdf->SetFont($tipoletra, 'B', $tamano);
-    $pdf->MultiCell(0, 15, utf8_decode($titulo), false, $alineacion);
+    $this->pdf->SetFont($tipoletra, 'B', $tamano);
+    $this->pdf->MultiCell(0, 15, utf8_decode($titulo), false, $alineacion);
 
-    $pdf->Ln(20);
+    $this->pdf->Ln(20);
 
     // Contenido
-    $pdf->SetFont($tipoletra, '', $tamano);
-    $pdf->MultiCell(0, 15, utf8_decode($contenido), false, $alineacion);
-    return $pdf;
+    $this->pdf->SetFont($tipoletra, '', $tamano);
+    $this->pdf->MultiCell(0, 15, utf8_decode($contenido), false, $alineacion);
   }
 
-  public function almacenaDoc($pdf)
+  public function almacenaDoc()
   {
-    $dir = "./pdf/";
-    $nombre = $this->getTitulo() . ".pdf";
-    $dir_nombre = $dir . $nombre;
-    $pdf->Output('F', $dir_nombre, true);
+    $dir_nombre = "./pdf/" . $this->getTitulo() . ".pdf";
+    $this->pdf->Output('F', $dir_nombre, true);
   }
 
-  public function devuelveDoc($pdf)
+  public function devuelveDoc()
   {
-    $pdf->Output();
+    $this->pdf->Output();
   }
 
   public function mostrarPDF()
