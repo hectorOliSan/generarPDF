@@ -27,9 +27,9 @@
       $pdf = new MiFPDF($titulo, $contenido);
     }
     $pdf->mostrarPDF();
-    $pdf_g = $pdf->generaDoc();
-    $pdf->almacenaDoc($pdf_g);
-    $pdf->devuelveDoc($pdf_g);
+    $pdf->generaDoc();
+    $pdf->almacenaDoc();
+    $pdf->devuelveDoc();
   }
 
   function pdflib() {
@@ -45,9 +45,9 @@
       $pdf = new MiPDFLib($titulo, $contenido);
     }
     $pdf->mostrarPDF();
-    $pdf_g = $pdf->generaDoc();
-    $pdf->almacenaDoc($pdf_g);
-    $pdf->devuelveDoc($pdf_g);
+    $pdf->generaDoc();
+    $pdf->almacenaDoc();
+    $pdf->devuelveDoc();
   }
 
   if (sizeof($_GET) == 4 || sizeof($_GET) == 7) {
