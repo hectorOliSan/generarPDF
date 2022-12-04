@@ -131,8 +131,8 @@ abstract class MiPDF implements iPDF
   }
 
   public abstract function generaDoc();
-  public abstract function almacenaDoc($pdf);
-  public abstract function devuelveDoc($pdf);
+  public abstract function almacenaDoc();
+  public abstract function devuelveDoc();
 
   public function mostrarPDF()
   {
